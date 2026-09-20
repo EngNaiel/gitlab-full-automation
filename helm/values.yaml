@@ -1,0 +1,22 @@
+replicaCount: 1
+
+image:
+  repository: gitlab-full-automation
+  tag: latest
+  pullPolicy: IfNotPresent
+
+env:
+  name: local
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30081
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"

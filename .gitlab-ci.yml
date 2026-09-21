@@ -1,0 +1,11 @@
+stages:
+  - test
+
+hello:
+    stage: test
+    image: alpine:latest
+    script:
+      - echo "Runner works"
+      - date
+
+  

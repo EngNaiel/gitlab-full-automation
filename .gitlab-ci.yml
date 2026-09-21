@@ -2,7 +2,7 @@ stages:
   - deployment
 
 QA:
-    stage: deplo yment
+    stage: deployment
     image: alpine:latest
     script:
       - echo "Runner works"

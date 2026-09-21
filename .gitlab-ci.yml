@@ -1,18 +1,8 @@
 stages:
-  - deployment
+  - build
 
-QA:
-    stage: deployment
-    image: alpine:latest
-    script:
-      - echo "Runner works"
-      - dates
-
-Production:
-    stage: deployment
-    needs: ["QA"]
-    image: alpine:latest
-    script:
-      - echo "Runner works"
-      - date
-  
+build-jar:
+  stage: build
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - mvn -B -s ci_settings.xml deploy -DskipTests

@@ -1,11 +1,17 @@
 stages:
-  - test
+  - deployment
 
-hello:
-    stage: test
+QA:
+    stage: deplo yment
+    image: alpine:latest
+    script:
+      - echo "Runner works"
+      - dates
+
+Production:
+    stage: deployment
     image: alpine:latest
     script:
       - echo "Runner works"
       - date
-
   

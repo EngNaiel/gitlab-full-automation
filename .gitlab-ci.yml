@@ -10,6 +10,7 @@ QA:
 
 Production:
     stage: deployment
+    needs: ["QA"]
     image: alpine:latest
     script:
       - echo "Runner works"

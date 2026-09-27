@@ -1,8 +1,19 @@
 stages:
   - build
+  - package
 
 build-jar:
   stage: build
   image: maven:3.9-eclipse-temurin-17
   script:
     - mvn -B -s ci_settings.xml deploy -DskipTests
+
+build-image:
+  stage: package
+  image: docker:27
+  needs:
+    - build-jar
+  script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login -u "$CI_REGISTRY_USER" --password-stdin "$CI_REGISTRY"
+    - docker build --provenance=false --sbom=false -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA"

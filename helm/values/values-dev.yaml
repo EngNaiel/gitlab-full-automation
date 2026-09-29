@@ -1,0 +1,9 @@
+replicaCount: 1
+
+env:
+  name: dev
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30081

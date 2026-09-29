@@ -1,0 +1,9 @@
+replicaCount: 1
+
+env:
+  name: uat
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30082

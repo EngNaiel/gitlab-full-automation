@@ -1,0 +1,9 @@
+replicaCount: 3
+
+env:
+  name: perf
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30083

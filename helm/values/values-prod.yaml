@@ -1,0 +1,9 @@
+replicaCount: 2
+
+env:
+  name: prod
+
+service:
+  type: NodePort
+  port: 8080
+  nodePort: 30084

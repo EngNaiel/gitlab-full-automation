@@ -21,7 +21,9 @@ build-image:
 
 deploy-dev:
   stage: deploy-dev
-  image: alpine/helm:3.16.2
+  image:
+    name: alpine/helm:3.16.2
+    entrypoint: [""]
   needs:
     - build-image
   script:

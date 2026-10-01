@@ -33,6 +33,8 @@ deploy-dev:
   script:
     - export KUBECONFIG=$KUBE_CONFIG
     - helm upgrade --install app-dev ./helm -n dev -f ./helm/values/values-dev.yaml --set image.repository="$CI_REGISTRY_IMAGE" --set image.tag="$CI_COMMIT_SHORT_SHA"
+  rules:
+    - if: $CI_COMMIT_BRANCH =~ /^feature\//
 
 deploy-uat:
   stage: deploy-uat
@@ -44,6 +46,8 @@ deploy-uat:
   script:
     - export KUBECONFIG=$KUBE_CONFIG
     - helm upgrade --install app-uat ./helm -n uat -f ./helm/values/values-uat.yaml --set image.repository="$CI_REGISTRY_IMAGE" --set image.tag="$CI_COMMIT_SHORT_SHA"
+  rules:
+    - if: $CI_COMMIT_BRANCH =~ /^feature\//
 
 deploy-perf:
   stage: deploy-perf
@@ -55,6 +59,9 @@ deploy-perf:
   script:
     - export KUBECONFIG=$KUBE_CONFIG
     - helm upgrade --install app-perf ./helm -n perf -f ./helm/values/values-perf.yaml --set image.repository="$CI_REGISTRY_IMAGE" --set image.tag="$CI_COMMIT_SHORT_SHA"
+  rules:
+    - if: $CI_COMMIT_BRANCH =~ /^release\//
+      when: manual
 
 deploy-prod:
   stage: deploy-prod
@@ -66,6 +73,11 @@ deploy-prod:
   script:
     - export KUBECONFIG=$KUBE_CONFIG
     - helm upgrade --install app-prod ./helm -n prod -f ./helm/values/values-prod.yaml --set image.repository="$CI_REGISTRY_IMAGE" --set image.tag="$CI_COMMIT_SHORT_SHA"
+  rules:
+    - if: $CI_COMMIT_BRANCH =~ /^release\//
+      when: manual
+    - if: $CI_COMMIT_BRANCH =~ /^hotfix\//
+      when: manual
 
 deploy-hotfix:
   stage: deploy-hotfix
@@ -77,3 +89,6 @@ deploy-hotfix:
   script:
     - export KUBECONFIG=$KUBE_CONFIG
     - helm upgrade --install app-hotfix ./helm -n hotfix -f ./helm/values/values-hotfix.yaml --set image.repository="$CI_REGISTRY_IMAGE" --set image.tag="$CI_COMMIT_SHORT_SHA"
+  rules:
+    - if: $CI_COMMIT_BRANCH =~ /^hotfix\//
+      when: manual

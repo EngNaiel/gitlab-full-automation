@@ -22,11 +22,7 @@ public class HomeController {
         body.put("application", "gitlab-full-automation");
         body.put("environment", environment);
         body.put("version", version);
-<<<<<<< HEAD
         body.put("message", "Hotfix applied");
-=======
-        body.put("message", "Hello from the feature branch");
->>>>>>> release/1.0
         return body;
     }
 }

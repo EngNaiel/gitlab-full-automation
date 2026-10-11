@@ -36,7 +36,7 @@ scan-image:
     - trivy image --exit-code 0 --severity HIGH,MEDIUM,LOW --no-progress "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA" --timeout 15m
     - trivy image --exit-code 1 --severity CRITICAL --no-progress "$CI_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA" --timeout 15m
   variables:
-    TRIVY_CACHE_DIR: .trivycache/
+    TRIVY_CACHE_DIR: "$CI_PROJECT_DIR/.trivycache"
   cache:
     key: trivy-db
     paths:

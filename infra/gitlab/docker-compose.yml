@@ -1,0 +1,28 @@
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:latest
+    container_name: gitlab
+    restart: always
+    hostname: localhost
+    shm_size: '256m'
+    ports:
+      - "8929:8929"
+      - "2224:22"
+      - "5050:5050"
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        external_url 'http://localhost:8929'
+        gitlab_rails['gitlab_shell_ssh_port'] = 2224
+        puma['worker_processes'] = 2
+        sidekiq['max_concurrency'] = 9
+        prometheus_monitoring['enable'] = false
+        registry_external_url 'http://localhost:5050'
+    volumes:
+      - gitlab-config:/etc/gitlab
+      - gitlab-logs:/var/log/gitlab
+      - gitlab-data:/var/opt/gitlab
+
+volumes:
+  gitlab-config:
+  gitlab-logs:
+  gitlab-data:

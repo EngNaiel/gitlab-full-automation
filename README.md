@@ -20,18 +20,18 @@ This project replaces discipline with **mechanism**. The pipeline makes it impos
 
 ```mermaid
 gitGraph
-    commit id: "main"
+    commit id: "live"
     branch feature/add-greeting
     commit id: "work"
-    commit id: "work"
+    commit id: "more work"
     branch release/1.0
     commit id: "release candidate"
     checkout main
-    merge release/1.0 id: "after prod"
+    merge release/1.0 id: "release merged"
     branch hotfix/fix-typo
     commit id: "emergency fix"
     checkout main
-    merge hotfix/fix-typo id: "after prod"
+    merge hotfix/fix-typo id: "hotfix merged"
 ```
 
 - **`main`** mirrors what is live in production. It deploys to nothing; code arrives here *after* release, not before.

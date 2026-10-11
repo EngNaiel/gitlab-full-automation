@@ -1,0 +1,15 @@
+# Suppressed CVEs: no upstream fix available in current Spring Boot release.
+# Spring Boot 3.4.5 ships Tomcat 10.1.40 and Spring Framework 6.2.6.
+# Review date: 2026-01-11 (recheck when Spring Boot ships newer Tomcat/Spring)
+
+# --- Tomcat: fixes require 10.1.55 / 11.0.22, not yet in any Spring Boot release ---
+CVE-2026-41293
+CVE-2026-43512
+CVE-2026-43515
+CVE-2026-65182
+CVE-2026-65905
+CVE-2026-68525
+
+# --- Spring WebMVC: fix requires Spring Framework 7.0.9, a major version ahead ---
+CVE-2026-47884
+CVE-2026-47890
